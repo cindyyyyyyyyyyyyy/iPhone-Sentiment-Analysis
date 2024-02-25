@@ -1,5 +1,4 @@
 pandas
-smtplib
 zipfile
 streamlit
 streamlit_player
