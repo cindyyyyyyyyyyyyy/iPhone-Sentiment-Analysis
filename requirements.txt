@@ -1,1 +1,7 @@
-streamlit_player==1.31.1
+pandas
+pickle
+smtplib
+zipfile
+streamlit
+streamlit_player
+email
