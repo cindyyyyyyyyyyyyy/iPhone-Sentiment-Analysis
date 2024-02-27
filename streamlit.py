@@ -251,31 +251,6 @@ def main():
         st.header("Conclusion and Review")
         st.subheader("Conclusion")
         st.write(conclusion)
-        
-        st.subheader("Submit Your Review")
-        st.write("If there is anything you want to discuss or comment, please write your review here:")
-        email_sender = st.text_input('From')
-        subject = st.text_input('Subject')
-        body = st.text_area('Body')
-
-        if st.button("Send Email"):
-            if body:
-                try:
-                    msg = MIMEText(body)
-                    msg['From'] = email_sender
-                    msg['Subject'] = subject
-
-                    server = smtplib.SMTP('smtp.gmail.com', 587)
-                    server.starttls()
-                    server.login("your_email@gmail.com", "your_email_password")
-                    server.sendmail(email_sender, 'cyndisuyitno@gmail.com', msg.as_string())
-                    server.quit()
-
-                    st.success('Thank you for your review! It has been submitted. 🚀')
-                except Exception as e:
-                    st.error(f"Oops! There is an error : {e}")
-            else:
-                st.warning("Please write a review before submitting.")
 
 if __name__ == "__main__":
     main()
