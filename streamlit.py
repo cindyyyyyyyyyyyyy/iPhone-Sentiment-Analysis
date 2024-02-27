@@ -177,7 +177,7 @@ Addressing these aspects could lead to a more robust analysis and a deeper under
 def main():
     st.set_page_config(layout="wide")
 
-    st.title("Sentiment Analysis Dashboard")
+    st.title("iPhone Twitter Sentiment Analysis")
     st.markdown("by: Cindy Suyitno")
     
     # Introduction tab
