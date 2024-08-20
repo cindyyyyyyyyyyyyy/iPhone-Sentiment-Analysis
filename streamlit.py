@@ -262,6 +262,7 @@ def main():
             text_column = st.selectbox("Select the column containing the text for sentiment analysis:", df.columns)
 
             if st.button("Predict Sentiments"):
+                df = df[~pd.isna(df[text_column])]
                 df['Predicted_Sentiment'] = df[text_column].apply(predict_sentiment)
 
                 st.write("Data with Predictions:")
