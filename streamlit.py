@@ -186,6 +186,7 @@ def main():
         "Background and Introduction",
         "Data Processing and Analysis",
         "Predict Your Sentiment Text",
+        "Upload CSV",
         "Conclusion and Review"])
 
     if page == "Background and Introduction":
@@ -246,6 +247,35 @@ def main():
                 st.write("Predicted Sentiment:", sentiment)
             else:
                 st.warning("Please enter some text.")
+
+    elif page == "Upload CSV":
+        st.header("Predict Your Sentiment Texts!")
+        st.write("List your texts that you want to be predicted in a csv file.")
+        uploaded_file = st.file_uploader("Choose a CSV file.", type="csv")
+
+        if uploaded_file:
+            df = pd.read_csv(uploaded_file)
+
+            st.write("Original Data:")
+            st.write(df)
+
+            text_column = st.selectbox("Select the column containing the text for sentiment analysis:", df.columns)
+
+            if st.button("Predict Sentiments"):
+                df['Predicted_Sentiment'] = df[text_column].apply(predict_sentiment)
+
+                st.write("Data with Predictions:")
+                st.write(df)
+
+                csv = df.to_csv(index=False)
+                st.download_button(
+                    label="Download CSV with predictions",
+                    data=csv,
+                    file_name="sentiment_predictions.csv",
+                    mime="text/csv",
+                )
+        else:
+            st.info("Please upload a CSV file.")
 
     elif page == "Conclusion and Review":
         st.header("Conclusion and Review")
